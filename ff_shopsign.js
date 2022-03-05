@@ -1,10 +1,11 @@
 /*
 店铺签到，各类店铺签到，有新的店铺直接添加token即可
-脚本搬运自 https://github.com/shufflewzc/faker2
-
-cron 0 0 * * * ff_shopsign.js, tag=店铺签到ff
+============Quantumultx===============
+[task_local]
+#店铺签到
+0 0 * * * jd_shop_sign.js
 */
-const $ = new Env('店铺签到ff');
+const $ = new Env('店铺签到');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -17,16 +18,27 @@ let vender=''
 let num=0
 let shopname=''
 const token = [
-'2F369612D54CF212F1F01ED84912F512', // 5天50豆
-'01B3D5EAB2AB6FCCA4A8B699D560A458', // 每天5豆，7天10豆
-'C18676D5A717F320CA8013506872AD8F', // 7天10豆
-'61905EBC993BCEB8F571C52CB3A59B33', // 7天10豆
-'E5A3952166402D7F9C056BF1A24E69E7', // 2天20豆
-'C718DA981DBB8CF73FAC7D5480733B43', // 每天1豆，15天7豆
-'D3AFC17B5A49902D870CF2E1ABEFC070', // 3天5豆
-'AD628232E244217A8989E8E5F6B7451C', // 3天5豆
-'13440850930FC8025A64D67E9D04AB7F', // 10天20豆
-'09E4730770FD2E15F9C60365F7FEA6E4', // 每天1豆，7天2豆
+  // "2A8794EC8DA4659DDDA0DF0E1A2AF4AF",
+  // "A1E0F96C1D9DB38AE87202E13CE1FD1F",
+  // "6D180D5A0B6F4A210684757B0DAC6A38",
+  // "6FF6A61279897029F4DE69C341551CFC",
+  // "0FCE1975D7A168F5BE2DE89BF2AA784D",
+  // "9E2F2B62044E1AC059180A38BE06507D",
+  // "C96A69334CA12BCA81DE74335AC1B35E",
+  // "A406C4990D5C50702D8C425A03F8076E",
+  // "E0AB41AAE21BD9CA8E35CC0B9AA92FA7",
+  // "A20223553DF12E06C7644A1BD67314B6",
+  // "9621D787095D0030BE681B535F8499BE",
+  // "C718DA981DBB8CF73FAC7D5480733B43",
+  // "77A6C7B5C2BC9175521931ADE8E3B2E0",
+  // "5BEFC891C256D515C4F0F94F15989055",
+  // "B1482DB6CB72FBF33FFC90B2AB53D32C",
+  // "225A5186B854F5D0A36B5257BAA98739",
+  // "9115177F9D949CFB76D0DE6B8FC9D621",
+  // "AD73E1D98C83593E22802600D5F72B9B",
+  // "447EA174AB8181DD52EFDECEB4E59F16",
+  // "32204A01054F3D8F9A1DF5E5CFB4E7F4",
+  // "6B52B6FDF119B68A42349EEF6CEEC4FF"
 ]
 
 if ($.isNode()) {
@@ -264,10 +276,10 @@ function taskUrl(token,venderId) {
           console.log(`\n${$.name}: API查询请求失败 ‼️‼️`)
           $.logErr(err);
         } else {
-          //console.log(data)
-          data = JSON.parse(/{(.*)}/g.exec(data)[0])
-          console.log(`已签到：`+data.data.days+`天`)
-          message +=`已签到：`+data.data.days+`天\n`
+            //console.log(data)
+            data = JSON.parse(/{(.*)}/g.exec(data)[0])
+            console.log(`已签到：`+data.data.days+`天`)
+            message +=`已签到：`+data.data.days+`天\n`
         }
       } catch (e) {
         $.logErr(e, resp);
