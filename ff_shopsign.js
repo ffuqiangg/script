@@ -18,8 +18,7 @@ let vender=''
 let num=0
 let shopname=''
 const token = [
-"E32A11E8D0F109206A55188A5DE09C4E",
-"EEFCCE78D3B14F41CBF10337DE64F4F5",
+"E01FC9BC162CA899E77CA56D91F87752",
 ]
 
 if ($.isNode()) {
